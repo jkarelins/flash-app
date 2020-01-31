@@ -28,12 +28,12 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="/pages/createqa.html" id="createNewQuestion"
+        <li class="nav-item active">
+          <a class="nav-link" href="#" id="createNewQuestion"
             >Create New QA <span class="sr-only"></span
           ></a>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item">
           <a class="nav-link" href="/pages/cards.html" id="createNewQuestion"
             >Play <span class="sr-only"></span
           ></a>
@@ -50,28 +50,31 @@
     <main>
       <div class="container mt-5 d-flex justify-content-center">
         <div class="card" style="">
-          <div class="card-body">
-            <h5>Select Category:</h5>
-            <div id="weHaveCategories"></div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item" id="youAreInCat"></li>
-            </ul>
-            <h5 class="card-title mt-3" id="greatUser"></h5>
-            <!-- <h6 class="card-subtitle mb-2 text-muted">Question No. 1</h6> -->
-            <p class="card-text" id="questionText"></p>
-            <form action="">
-              <div class="form-group">
-                <label for="anwerText">Enter Your Answer Here:</label>
-                <input type="text" class="form-control" id="answerText" />
-              </div>
-              <button
-                type="button"
-                class="btn btn-primary text-centered"
-                id="submitAnswer"
-              >
-                Submit
-              </button>
-            </form>
+          <div class="card-body" id="mainContent">
+            <h5>Selected one of available categories:</h5>
+            <div id="foundCategories"></div>
+            <h5>Or just create new one:</h5>
+            <div id="addNewOne">
+              <form>
+                <div class="form-group">
+                  <label for="newCategorie">New Categorie Name:</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="newCategoryToAdd"
+                    required
+                  />
+                </div>
+                <div id="error"></div>
+                <button
+                  type="button"
+                  class="btn btn-success"
+                  id="btnNewCatToAdd"
+                >
+                  SAVE
+                </button>
+              </form>
+            </div>
           </div>
           <hr />
           <ul class="list-group list-group-flush">
@@ -96,6 +99,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="../data/qa.js"></script>
-    <script src="../app/cards.js"></script>
+    <script src="../app/createQA.js"></script>
   </body>
 </html>

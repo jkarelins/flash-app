@@ -21,3 +21,6 @@ If you get this far - expand with exciting features yourself!
 1. on first visit continue or random
 2. if random, provide a list of Q/A
 3. if continue or register ->
+
+STOPPED ON CARDS.JS >>>> Should check NEXT button
+Should check first initialization >> after name input
