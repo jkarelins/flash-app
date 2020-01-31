@@ -1,6 +1,7 @@
 let localStorageQA = JSON.parse(localStorage.getItem("localQA"));
 let localStorageUser = localStorage.getItem("userQA");
 let locStorCatSel = localStorage.getItem("lastCatSel");
+let globalCat = "";
 
 // Check if local Storage is not empty
 if (localStorageQA === null) {
@@ -11,8 +12,19 @@ if (localStorageQA === null) {
   launchApp();
 }
 
+if (locStorCatSel === null) {
+  localStorage.setItem("lastCatSel", "Test");
+  locStorCatSel = "Test";
+}
+
 function getQuestionsAnswers() {
-  const defaultQA = localStorageQA.categories[0].questionArr;
+  let defaultQA = [];
+  for (category of localStorageQA.categories) {
+    if (category.name == locStorCatSel) {
+      defaultQA = category.questionArr;
+      break;
+    }
+  }
   const randomQuestion = Math.floor(Math.random() * defaultQA.length);
   return defaultQA[randomQuestion];
 }
@@ -51,8 +63,31 @@ function clearOld() {
   $("#showRightAnswer").empty();
 }
 
+function showAllCategories() {
+  $("#weHaveCategories").html(
+    localStorageQA.categories
+      .map(
+        ({ name }) =>
+          `<button type="button" class="btn btn-outline-primary m-3" data="${name}">${name}</button>`
+      )
+      .join("")
+  );
+}
+
+function checkSelectedCategorie() {
+  $("#weHaveCategories").on("click", e => {
+    const categorySelectedBtn = e.target.getAttribute("data");
+    localStorage.setItem("lastCatSel", categorySelectedBtn);
+    locStorCatSel = categorySelectedBtn;
+    console.log(locStorCatSel);
+    location.reload();
+  });
+}
+
 function launchApp() {
   clearOld();
+  showAllCategories();
+  checkSelectedCategorie();
   let randomQuestion = getQuestionsAnswers();
   console.log(randomQuestion);
   $("#greatUser").append(`Hello, ${localStorageUser}!`);
